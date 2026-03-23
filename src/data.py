@@ -13,8 +13,17 @@ class Data:
         with open(f'{dir}/hanja.json', 'r', encoding='utf-8') as f:
             self.hanja_list = json.load(f)
 
-    def get_studied_hanja(self, grade: int) -> list:
+    def get_studied_hanja(self, iter: int, grade: int) -> list:
         if not hasattr(self, 'studied_hanja'):
-            self.studied_hanja = [hanja for hanja in self.hanja_list 
-                                  if hanja['grade'] >= grade and hanja['selected']]
+            if iter == 1:
+                self.studied_hanja = [hanja for hanja in self.hanja_list 
+                                      if hanja['grade'] >= grade and hanja['selected']]
+            elif iter > 1:
+                self.studied_hanja = [hanja for hanja in self.hanja_list
+                                      if hanja['grade'] >= grade]
+            else:
+                raise ValueError(
+                    f"Data.get_studied_hanja(): Invalid iteration {iter}. "
+                    f"(Expected `iter` >= 1)"
+                )
         return self.studied_hanja

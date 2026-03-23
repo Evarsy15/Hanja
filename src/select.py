@@ -38,17 +38,17 @@ def select_random_hanja(config: Config, data: Data):
             print(f'{i}. {format_hanja(hanja)}')
         print("입니다!")
         print("-"*40)
-        print("이걸로 하시겠어요? : ", end="")
+        print("이걸로 하시겠어요? (y/n/quit): ", end="")
         ans = input().lower()
         if ans in ['y', 'yes', '네', '응']:
             for h in selected_hanja:
                 h['selected'] = True
+                h['selected_ever'] = True
             with open(f'{data.data_dir}/hanja.json', 'w', encoding='utf-8') as f:
                 json.dump(data.hanja_list, f, ensure_ascii=False, indent=2)
             return
         elif ans in ['q', 'quit', '종료']:
             print("추첨을 종료합니다.")
-            print("-"*40)
             return
         else:
             print("다시 추첨합니다...")

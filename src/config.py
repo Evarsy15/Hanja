@@ -30,15 +30,17 @@ class Config:
                 print("잘못된 입력입니다. 양의 정수를 입력해주세요.")
         self.strike = 0
         self.last_login = ""
+        self.iteration = 1
         self.save_config()
 
     def load_config(self, f):
         data = json.load(f)
 
-        self.grade = data.get('grade', 12)  # 12: 2급 인명지명용 한자
-        self.num_hanja = data.get('num_hanja', 5) # 한자 추첨 시 선택할 한자 수
-        self.strike = data.get('strike', 0) # 연속 출석 일수
-        self.last_login = data.get('last_login', "")
+        self.grade = data.get('grade', 12)           # 목표 한자 급수
+        self.num_hanja = data.get('num_hanja', 5)    # 한자 추첨 시 선택할 한자 수
+        self.strike = data.get('strike', 0)          # 연속 출석 일수
+        self.last_login = data.get('last_login', "") # 마지막 로그인 날짜 (YYYY-MM-DD)
+        self.iteration = data.get('iteration', 1)    # 한자 급수 순회 횟수
 
         self.hanja_list = []  # 한자 데이터는 별도로 로드
 
@@ -48,7 +50,8 @@ class Config:
                 "grade": self.grade,
                 "num_hanja": self.num_hanja,
                 "strike": self.strike,
-                "last_login": self.last_login
+                "last_login": self.last_login,
+                "iteration": self.iteration
             }, f, ensure_ascii=False, indent=4)
 
 def change_config(config: Config):

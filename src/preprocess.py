@@ -12,6 +12,7 @@ def preprocess(data_dir: str = "data"):
     for item in data:
         item['grade'] = level_dict_kor[item['level']]
         item['selected'] = False  # 초기값 설정
+        item['selected_ever'] = False  # 초기값 설정
 
     with open(f'{data_dir}/hanja.json', 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)

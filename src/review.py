@@ -2,12 +2,12 @@ import os
 import json
 import random
 
-from src.auxiliary import format_hanja, get_repr_pairs
+from src.auxiliary import format_hanja, get_repr_pairs_user
 from src.config import Config
 from src.data import Data
 
 def review_hanja(config: Config, data: Data):
-    studied_hanja = data.get_studied_hanja(config.grade)
+    studied_hanja = data.get_studied_hanja(config.iteration, config.grade)
     while True:
         cand = random.choice(studied_hanja)
         print("-"*40)
@@ -15,7 +15,7 @@ def review_hanja(config: Config, data: Data):
         print(f" {cand['hanja']}")
         
         ans = input(" > ")
-        if ans in get_repr_pairs(cand):
+        if ans in get_repr_pairs_user(cand):
             print("정답! ", end='')
             print(f"{format_hanja(cand)}")
         else:

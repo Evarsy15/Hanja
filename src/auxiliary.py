@@ -32,3 +32,20 @@ def get_repr_pairs(hanja: dict) -> list[str]:
         for __m in _m:
             pairs.append(f'{__m} {_s[0]}')
     return pairs
+
+def get_repr_pairs_user(hanja: dict) -> list[str]:
+    try:
+        # 어문회 제공 훈에 식별을 위해 한자 서술을 포함하는 경우,
+        # 이를 제거한 '사용자가 쉽게 입력할 수 있는' 형태의 훈음-의미 쌍을 반환
+        # ex) "성(姓)" -> "성"
+        meaning_parse = ast.literal_eval(hanja['meaning_user'])
+    except KeyError:
+        # 'meaning_user' 필드가 없는 경우, 기존 'meaning' 필드를 사용
+        meaning_parse = ast.literal_eval(hanja['meaning'])
+    pairs = []
+    for meaning in meaning_parse:
+        _m = meaning[0]
+        _s = meaning[1]; assert len(_s) == 1, "invalid format"
+        for __m in _m:
+            pairs.append(f'{__m} {_s[0]}')
+    return pairs

@@ -39,6 +39,7 @@ def menu_info(config: Config, data: Data):
     print("내 정보:")
     print(f" - 연속 출석 일수: {config.strike}일")
     print(f" - 마지막 로그인 날짜: {config.last_login}")
+    print(f" - 한자 순회 횟수 : {config.iteration}회차")
     print(f" - 지금까지 고른 한자 수: {sum(1 for h in data.hanja_list if h['selected'])}개")
 
 # 최상위 메뉴
