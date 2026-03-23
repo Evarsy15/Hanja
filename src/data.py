@@ -12,3 +12,9 @@ class Data:
             preprocess(dir)
         with open(f'{dir}/hanja.json', 'r', encoding='utf-8') as f:
             self.hanja_list = json.load(f)
+
+    def get_studied_hanja(self, grade: int) -> list:
+        if not hasattr(self, 'studied_hanja'):
+            self.studied_hanja = [hanja for hanja in self.hanja_list 
+                                  if hanja['grade'] >= grade and hanja['selected']]
+        return self.studied_hanja

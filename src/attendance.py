@@ -10,16 +10,20 @@ def update_attendance(config: Config):
         if diff == 1:
             config.strike += 1
             print(f"오늘은 연속 출석 {config.strike}일차!")
+            print("-"*40)
         elif diff > 1:
             config.strike = 1
             print(f"출석이 끊겼어요. (마지막 로그인: {config.last_login})")
+            print("-"*40)
         elif diff == 0:
             pass
         else:
             print("날짜 오류: 마지막 로그인 날짜가 미래입니다. 출석 기록을 초기화합니다.")
+            print("-"*40)
             config.strike = 1
         config.last_login = today.strftime("%Y-%m-%d")
     else:
         config.strike = 1
         config.last_login = today.strftime("%Y-%m-%d")
         print("첫 출석입니다!")
+        print("-"*40)

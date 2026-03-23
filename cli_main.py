@@ -4,9 +4,11 @@ from datetime import datetime
 from src.attendance import update_attendance
 from src.config import Config, change_config
 from src.data import Data
+from src.review import review_hanja
 from src.select import select_random_hanja
 
 def menu_study(config: Config, data: Data):
+    print("-"*40)
     print("무엇을 공부하시겠어요?")
     print(" 1. 랜덤 한자 추첨")
     print(" 2. 배운 한자 복습")
@@ -20,7 +22,7 @@ def menu_study(config: Config, data: Data):
         case "1":
             select_random_hanja(config, data)
         case "2":
-            print("배운 한자 복습 기능은 아직 구현되지 않았습니다.")
+            review_hanja(config, data)
         case "3":
             print("사자성어 공부 기능은 아직 구현되지 않았습니다.")
         case "4":
@@ -42,6 +44,7 @@ def menu_info(config: Config, data: Data):
 # 최상위 메뉴
 def menu_top(config: Config, data: Data):
     while True:
+        print("-"*40)
         print("메뉴를 선택해주세요:")
         print(" 1. 한자 공부하기")
         print(" 2. 내 정보")
@@ -61,7 +64,7 @@ def menu_top(config: Config, data: Data):
                 break
             case _:
                 print("잘못된 입력입니다. 다시 시도해주세요.")
-        print("-"*40)
+        
 
     # 프로그램 종료 전 설정 저장
     config.save_config()
@@ -75,12 +78,10 @@ def main():
     print("-"*40)
 
     update_attendance(config)
-    print("-"*40)
 
     print("한자 데이터 로딩중...")
     data = Data("data")
     print("한자 데이터 로딩 완료!")
-    print("-"*40)
 
     menu_top(config, data)
 

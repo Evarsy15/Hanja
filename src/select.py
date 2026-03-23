@@ -20,6 +20,7 @@ def format_hanja(hanja):
     return fmt
 
 def select_random_hanja(config: Config, data: Data):
+    print("-"*40)
     eligible_hanja = [h for h in data.hanja_list if int(h['grade']) >= config.grade and not h['selected']]
 
     if not eligible_hanja:
@@ -36,6 +37,7 @@ def select_random_hanja(config: Config, data: Data):
         for i, hanja in enumerate(selected_hanja, 1):
             print(f'{i}. {format_hanja(hanja)}')
         print("입니다!")
+        print("-"*40)
         print("이걸로 하시겠어요? : ", end="")
         ans = input().lower()
         if ans in ['y', 'yes', '네', '응']:
@@ -46,6 +48,7 @@ def select_random_hanja(config: Config, data: Data):
             return
         elif ans in ['q', 'quit', '종료']:
             print("추첨을 종료합니다.")
+            print("-"*40)
             return
         else:
             print("다시 추첨합니다...")
