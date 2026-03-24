@@ -1,3 +1,6 @@
 [submodule "hanja_dataset"]
 	path = hanja_dataset
-	url = https://github.com/rycont/hanja-grade-dataset
+	url = https://github.com/rycont/hanja-grade-dataset.git
+[submodule "extern/cnocr"]
+	path = extern/cnocr
+	url = https://github.com/breezedeus/cnocr.git
