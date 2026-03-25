@@ -8,7 +8,7 @@
 
 ※ 개인용 프로젝트로, 설계는 직접 하고 코드는 GitHub Copilot / Gemini 등 생성형 AI의 도움을 받아 작성하였습니다.
 
-## 사용 방법
+## 설치하기
 
 본 프로그램을 실행하기 위해 필요한 패키지 목록은 다음과 같습니다.
 
@@ -18,8 +18,7 @@ Python >= 3.10
 
 # GUI 관련 요구사항
 PyQt6
-torch
-...
+CnOCR
 ```
 
 본 저장소는 다음과 같이 로컬에 설치할 수 있습니다.
@@ -34,11 +33,28 @@ cd Hanja
 git submodule update --init --recursive
 ```
 
+GUI 전용 추가 패키지는 `pip install`을 통해 설치할 수 있습니다. 또는, 해당 저장소를 복제한 뒤 아래 스크립트로 가상환경 생성 + 의존성 설치를 한 번에 실행할 수 있습니다.
+
+```bash
+python setup_env.py
+```
+
+현재 활성화된 파이썬 환경에 바로 설치하려면 아래처럼 실행하세요:
+
+```bash
+python setup_env.py --no-venv
+```
+
+## 사용하기
+
 본 프로그램은 100% Python으로 작성되어 있습니다. 프로젝트 루트에서 Python으로 메인 파일을 실행하면 됩니다.
 
 ```bash
 # CLI Main
 python3 cli_main.py
+
+# GUI Main
+python3 gui_main.py
 ```
 
 ## 업데이트 내용
